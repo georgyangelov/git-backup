@@ -20,7 +20,7 @@ MASTER="$(git symbolic-ref --short HEAD)"
 HEADHASH="$(git rev-parse HEAD)"
 UPSTREAMHASH="$(git rev-parse $MASTER@{upstream})"
 
-if [ -f "$ARCHIVE" ] && [ "$HEADHASH" != "$UPSTREAMHASH" ]; then
+if [ ! -f "$ARCHIVE" ] || [ "$HEADHASH" != "$UPSTREAMHASH" ]; then
     git clean -fdx
     git reset --hard "$MASTER@{upstream}"
 
