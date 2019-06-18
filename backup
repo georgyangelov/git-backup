@@ -14,9 +14,18 @@ cd "$REPO"
 
 git clone "$URL" . || true
 git fetch -f --prune --prune-tags
-git clean -fdx
-git reset --hard HEAD
 
-zip -r "$ARCHIVE" .
+MASTER="$(git symbolic-ref --short HEAD)"
+HEADHASH="$(git rev-parse HEAD)"
+UPSTREAMHASH="$(git rev-parse $MASTER@{upstream})"
 
-echo "Backed up $NAME"
+if [ "$HEADHASH" != "$UPSTREAMHASH" ]; then
+    git clean -fdx
+    git reset --hard "$MASTER@{upstream}"
+
+    zip -FS --latest-time -q -r "$ARCHIVE" .
+
+    echo "Backed up $NAME"
+else
+    echo "No changes in $NAME"
+fi
