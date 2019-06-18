@@ -1,0 +1,22 @@
+#!/bin/sh
+set -ex
+
+NAME="$1"
+URL="$2"
+
+echo "Backing up $NAME ($URL)..."
+
+REPO="$CACHE_LOCATION/$NAME"
+ARCHIVE="$ARCHIVE_LOCATION/$NAME.zip"
+
+mkdir -p "$REPO"
+cd "$REPO"
+
+git clone "$URL" . || true
+git fetch -f --prune --prune-tags
+git clean -fdx
+git reset --hard HEAD
+
+zip -r "$ARCHIVE" .
+
+echo "Backed up $NAME"

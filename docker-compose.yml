@@ -1,0 +1,8 @@
+version: '3'
+services:
+  git-backup:
+    build: .
+    command: now
+    volumes:
+      - ./cache:/git-backup/cache/
+      - ./archives:/git-backup/archives/

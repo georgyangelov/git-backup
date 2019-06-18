@@ -1,0 +1,10 @@
+ssh/
+!ssh/.gitkeep
+
+config.sh
+
+cache/
+!cache/.gitkeep
+
+archives/
+!archives/.gitkeep
