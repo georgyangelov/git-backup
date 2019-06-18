@@ -3,11 +3,12 @@ set -ex
 
 NAME="$1"
 URL="$2"
+ARCHIVE_PATH="$3"
 
-echo "Backing up $NAME ($URL)..."
+echo "Backing up $NAME ($URL) to $ARCHIVE_PATH..."
 
 REPO="$CACHE_LOCATION/$NAME"
-ARCHIVE="$ARCHIVE_LOCATION/$NAME.zip"
+ARCHIVE="$ARCHIVE_LOCATION/$ARCHIVE_PATH"
 
 mkdir -p "$REPO"
 cd "$REPO"

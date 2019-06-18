@@ -1,5 +1,5 @@
 #!/bin/sh
 set -e
 
-backup git-backup git@github.com:georgyangelov/git-backup.git
-backup fireflies git@github.com:georgyangelov/fireflies.git
+backup git-backup git@github.com:georgyangelov/git-backup.git git-backup.zip
+backup fireflies git@github.com:georgyangelov/fireflies.git fireflies.zip
